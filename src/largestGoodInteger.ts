@@ -1,20 +1,12 @@
 export function largestGoodInteger(num: string): string {
-  let maxGoodInteger = '';
-  let currentGoodInteger = '';
-
-  for (let i = 0; i < num.length; i++) {
-    currentGoodInteger += num[i];
-    if (currentGoodInteger.length === 3) {
-      if (
-        currentGoodInteger[0] === currentGoodInteger[1] &&
-        currentGoodInteger[1] === currentGoodInteger[2]
-      ) {
-        if (currentGoodInteger > maxGoodInteger) {
-          maxGoodInteger = currentGoodInteger;
-        }
-      }
-      currentGoodInteger = currentGoodInteger.slice(1);
-    }
+  const numSet = new Set();
+  let res = '';
+  for (let i = 9; i >= 0; i--) numSet.add(String(i).repeat(3));
+  for (let i = 0; i < num.length - 2; i++) {
+    let check = num[i];
+    for (let j = i + 1; j < i + 3; j++) check += num[j];
+    if (numSet.has(check) && Number(check) >= Number(res)) res = check;
   }
-  return maxGoodInteger;
+
+  return res;
 }
