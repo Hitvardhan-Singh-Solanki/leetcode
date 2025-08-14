@@ -1,23 +1,15 @@
 export function largestGoodInteger(num: string): string {
-  const numSet = new Set([
-    '999',
-    '888',
-    '777',
-    '666',
-    '555',
-    '444',
-    '333',
-    '222',
-    '111',
-    '000',
-  ]);
-  let res = '';
+  let best = -1;
 
-  for (let i = 0; i < num.length - 2; i++) {
-    let check = num[i];
-    for (let j = i + 1; j < i + 3; j++) check += num[j];
-    if (numSet.has(check) && Number(check) >= Number(res)) res = check;
+  for (let i = 0; i + 2 < num.length; i++) {
+    const a = num[i];
+    if (a === num[i + 1] && a === num[i + 2]) {
+      const d = a.charCodeAt(0) - 48;
+      if (d > best) {
+        best = d;
+        if (best === 9) break;
+      }
+    }
   }
-
-  return res;
+  return best >= 0 ? String(best).repeat(3) : '';
 }
