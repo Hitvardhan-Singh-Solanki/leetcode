@@ -4,10 +4,10 @@ export function largestGoodInteger(num: string): string {
   for (let i = 0; i + 2 < num.length; i++) {
     const a = num[i];
     if (a === num[i + 1] && a === num[i + 2]) {
-      const d = a.charCodeAt(0) - 48;
+      const d = a.charCodeAt(0) - 48; // '0'
       if (d > best) {
         best = d;
-        if (best === 9) break;
+        if (best === 9) return '999';
       }
     }
   }
