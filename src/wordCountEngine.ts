@@ -1,3 +1,11 @@
+/**
+ * Counts the frequency of each sanitized word in the input document and returns a sorted list of word-frequency pairs.
+ *
+ * The document is split into words, each word is converted to lowercase and stripped of non-alphabetic characters, and empty results are ignored. The output is sorted by descending frequency; words with the same frequency retain their original order of appearance.
+ *
+ * @param document - The input string to analyze
+ * @returns An array of `[word, frequency]` pairs, where frequency is a string representing the count
+ */
 export function wordCountEngine(document: string): string[][] {
   const freqMap = document
     .split(' ')
@@ -19,6 +27,14 @@ export function wordCountEngine(document: string): string[][] {
   });
 }
 
+/**
+ * Returns a sanitized version of the input word containing only lowercase alphabetic characters.
+ *
+ * Non-alphabetic characters are removed and all letters are converted to lowercase.
+ *
+ * @param word - The word to sanitize
+ * @returns The sanitized, lowercase word with only letters a-z
+ */
 function sanitizeWord(word: string): string {
   const charArr: string[] = [];
   for (let c of word.toLocaleLowerCase())

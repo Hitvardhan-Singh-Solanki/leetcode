@@ -1,3 +1,9 @@
+/**
+ * Returns the length of the longest contiguous subarray containing only the maximum number in the input array.
+ *
+ * @param nums - The array of numbers to search
+ * @returns The length of the longest sequence of consecutive maximum values
+ */
 export function longestSubarray(nums: number[]): number {
   if (nums.length <= 1) return 0;
 
