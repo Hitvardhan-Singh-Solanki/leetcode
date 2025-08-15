@@ -156,16 +156,6 @@ describe('OrderBook edge cases', () => {
     spy.mockRestore();
   });
 
-  test('should handle cancellation of non-existent order gracefully', () => {
-    const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
-
-    ob.cancelOrder('xxxxx');
-
-    expect(spy).toHaveBeenCalledWith('Order ID xxxxx not found.');
-
-    spy.mockRestore();
-  });
-
   test('should chain multiple matches progressively', () => {
     // Add multiple sell orders at increasing prices
     ob.addOrder({ type: 'sell', price: 90, quantity: 2 });

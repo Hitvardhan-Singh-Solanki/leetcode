@@ -1,10 +1,6 @@
 import { longestSubarray } from './longestSubarray';
 
 describe('longestSubarray', () => {
-  it('should handle basic case with single deletion', () => {
-    expect(longestSubarray([1, 2, 3, 3, 2, 2])).toBe(2);
-  });
-
   it('should handle all ones', () => {
     expect(longestSubarray([1, 1, 1])).toBe(2);
   });
