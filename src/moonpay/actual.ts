@@ -78,7 +78,7 @@ export class OrderBookResolver {
   }
 
   private getPerExchangePrices(size: number, asks: Ask[]): PerExchangePrice {
-    let price: number = 0;
+    let price = 0;
     let quantity = 0;
 
     for (let ask of asks) {
