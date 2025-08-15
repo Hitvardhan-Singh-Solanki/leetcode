@@ -5,14 +5,31 @@
  * @returns The length of the longest sequence of consecutive maximum values
  */
 export function longestSubarray(nums: number[]): number {
-  let maxNumber = Math.max(...nums);
-  let count = 0;
-  let maxCount = 0;
+  if (nums.length <= 1) return 0;
+
+  let maxOnes = 0;
+  let prevOnes = 0;
+  let currOnes = 0;
+  let hasZero = false;
+
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === maxNumber) count++;
-    else count = 0;
-    maxCount = Math.max(maxCount, count);
+    if (nums[i] === 1) {
+      currOnes++;
+    } else {
+      hasZero = true;
+      maxOnes = Math.max(maxOnes, prevOnes + currOnes);
+      prevOnes = currOnes;
+      currOnes = 0;
+    }
   }
 
-  return maxCount;
+  // Handle the last sequence
+  maxOnes = Math.max(maxOnes, prevOnes + currOnes);
+
+  // If no zeros found, we must delete one element
+  if (!hasZero) {
+    return nums.length - 1;
+  }
+
+  return maxOnes;
 }

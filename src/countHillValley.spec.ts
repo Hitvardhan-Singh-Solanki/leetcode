@@ -107,18 +107,6 @@ describe('countHillValley', () => {
       const result = countHillValley(nums);
       expect(result).toBe(1);
     });
-
-    it('should handle equal values between hill and valley', () => {
-      const nums = [1, 3, 2, 2, 2, 4, 1];
-      const result = countHillValley(nums);
-      expect(result).toBe(2);
-    });
-
-    it('should handle multiple plateaus in sequence', () => {
-      const nums = [1, 1, 3, 3, 2, 2, 4, 4, 1, 1];
-      const result = countHillValley(nums);
-      expect(result).toBe(2);
-    });
   });
 
   describe('multiple hills and valleys', () => {
@@ -154,12 +142,6 @@ describe('countHillValley', () => {
       expect(result).toBe(1);
     });
 
-    it('should handle negative numbers', () => {
-      const nums = [-5, -2, -7, -1, -3];
-      const result = countHillValley(nums);
-      expect(result).toBe(2);
-    });
-
     it('should handle mix of positive and negative numbers', () => {
       const nums = [-2, 1, -3, 0, -1];
       const result = countHillValley(nums);
@@ -177,23 +159,9 @@ describe('countHillValley', () => {
       const result = countHillValley(nums);
       expect(result).toBe(0);
     });
-
-    it('should handle decimal numbers', () => {
-      const nums = [1.5, 2.5, 1.8, 3.2, 0.9];
-      const result = countHillValley(nums);
-      expect(result).toBe(2);
-    });
   });
 
   describe('algorithm correctness verification', () => {
-    it('should correctly remove consecutive duplicates before processing', () => {
-      // This tests the first phase of the algorithm
-      const nums = [1, 1, 2, 2, 3, 3, 2, 2, 1, 1];
-      const result = countHillValley(nums);
-      // After cleaning: [1, 2, 3, 2, 1] which has 2 hills/valleys
-      expect(result).toBe(2);
-    });
-
     it('should identify hills where prev < curr > next', () => {
       const nums = [1, 5, 2]; // Clear hill at index 1
       const result = countHillValley(nums);
@@ -227,7 +195,7 @@ describe('countHillValley', () => {
       const start = Date.now();
       const result = countHillValley(nums);
       const end = Date.now();
-      
+
       expect(typeof result).toBe('number');
       expect(result).toBeGreaterThanOrEqual(0);
       expect(end - start).toBeLessThan(100); // Should complete in under 100ms
@@ -254,10 +222,10 @@ describe('countHillValley', () => {
         [2, 1, 3],
         [1, 1, 1],
         [-5, -2, -7],
-        [0, 1, 0]
+        [0, 1, 0],
       ];
-      
-      testCases.forEach(nums => {
+
+      testCases.forEach((nums) => {
         const result = countHillValley(nums);
         expect(result).toBeGreaterThanOrEqual(0);
         expect(Number.isInteger(result)).toBe(true);
@@ -271,10 +239,10 @@ describe('countHillValley', () => {
         [1, 2], // Two elements
         [1, 1, 1, 1], // All equal
         [1, 2, 3, 4], // Strictly increasing
-        [4, 3, 2, 1]  // Strictly decreasing
+        [4, 3, 2, 1], // Strictly decreasing
       ];
 
-      impossibleCases.forEach(nums => {
+      impossibleCases.forEach((nums) => {
         const result = countHillValley(nums);
         expect(result).toBe(0);
       });

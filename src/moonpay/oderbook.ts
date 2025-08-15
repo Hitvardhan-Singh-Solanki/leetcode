@@ -38,7 +38,6 @@ export interface IOrder {
 interface IOrderBook {
   addOrder(order: IOrder): void;
   getMatched(): Match[];
-  print(): void;
   marketDepth(): MarketDepth;
 }
 
@@ -112,28 +111,17 @@ export class OrderBook implements IOrderBook {
     return this.matches;
   }
 
-  print(): void {
-    console.log({
-      buys: this.buyOrders,
-      sells: this.sellOrders,
-      matches: this.matches,
-    });
-  }
-
   cancelOrder(id: string): void {
     const order = this.idToOrderMap.get(id);
     if (!order) {
-      console.warn(`Order ID ${id} not found.`);
       return;
     }
 
     if (order.status === 'cancelled') {
-      console.warn(`Order ID ${id} is already cancelled.`);
       return;
     }
 
     order.status = 'cancelled';
-    console.log(`Order ID ${id} has been cancelled.`);
 
     this.matchOrder();
   }
@@ -218,11 +206,9 @@ export class OrderBook implements IOrderBook {
 
       if (sellOrder.quantity <= 0) {
         const soldOrder = this.sellOrders.dequeue();
-        this.logOrderStatus(soldOrder);
       }
       if (buyOrder.quantity <= 0) {
         const boughtOrder = this.buyOrders.dequeue();
-        this.logOrderStatus(boughtOrder);
       }
     }
   }
@@ -231,14 +217,5 @@ export class OrderBook implements IOrderBook {
     const sellOrder = this.sellOrders.peek();
     const buyOrder = this.buyOrders.peek();
     return !!sellOrder && !!buyOrder && sellOrder.price <= buyOrder.price;
-  }
-
-  private logOrderStatus(order: IOrder | null) {
-    if (!order) return;
-    console.log(
-      `Order settled of type ${order.type}:
-      ${order.id} at price ${order.price},
-      quantity: ${order.quantity}`
-    );
   }
 }
