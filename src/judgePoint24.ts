@@ -1,3 +1,13 @@
+/**
+ * Determines whether the given numbers can be combined with +, -, *, and / to produce 24.
+ *
+ * Tries all permutations of the input numbers and recursively combines pairs with the four
+ * basic operators (respecting commutativity for + and *). Uses a small epsilon (1e-6)
+ * for floating-point comparison against the target value 24.
+ *
+ * @param cards - Array of numbers to use; expected to contain four numbers for the classic 24 game.
+ * @returns True if some ordering and combination of the numbers evaluates to 24, otherwise false.
+ */
 export function judgePoint24(cards: number[]): boolean {
   // The target value is 24.
   const TARGET = 24;
