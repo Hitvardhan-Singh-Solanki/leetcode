@@ -66,27 +66,19 @@ export function judgePoint24(cards: number[]): boolean {
         const b = nums[j];
         const remaining = nums.filter((_, index) => index !== i && index !== j);
 
-        for (const operator of OPERATORS) {
-          // If the operator is commutative, then try both orders.
-          if (operator === '+' || operator === '*') {
-            const result = operator === '+' ? a + b : a * b;
-            if (evaluate([...remaining, result])) {
-              return true;
-            }
+        // Try all possible results from combining a and b.
+        const candidates: number[] = [
+          a + b,
+          a * b,
+          a - b,
+          b - a,
+        ];
+        if (Math.abs(b) > EPSILON) candidates.push(a / b);
+        if (Math.abs(a) > EPSILON) candidates.push(b / a);
 
-            const result2 = operator === '+' ? b + a : b * a;
-            if (evaluate([...remaining, result2])) {
-              return true;
-            }
-          } else {
-            // If the operator is not commutative, then only try one order.
-            if (Math.abs(b) > EPSILON && evaluate([...remaining, a - b])) {
-              return true;
-            }
-
-            if (Math.abs(a) > EPSILON && evaluate([...remaining, a / b])) {
-              return true;
-            }
+        for (const value of candidates) {
+          if (evaluate([...remaining, value])) {
+            return true;
           }
         }
       }
