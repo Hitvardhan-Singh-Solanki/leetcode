@@ -49,7 +49,7 @@ describe('judgePoint24', () => {
     });
 
     it('should handle division', () => {
-      expect(judgePoint24([4, 1, 8, 2])).toBe(true); // 8 * 4 / (2-1) = 24
+      expect(judgePoint24([4, 1, 8, 2])).toBe(true); // 4 * (8 - 2) * 1 = 24
     });
 
     it('should handle mixed operations', () => {
