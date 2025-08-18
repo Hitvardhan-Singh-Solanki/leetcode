@@ -74,7 +74,7 @@ describe('judgePoint24', () => {
 
   describe('complex cases', () => {
     it('should handle nested expressions', () => {
-      expect(judgePoint24([4, 7, 8, 8])).toBe(true); // 8/(4-7/8) = 24
+      expect(judgePoint24([4, 7, 8, 8])).toBe(true); // 8*((4+7)-8) = 24
     });
 
     it('should handle multiple valid solutions', () => {
