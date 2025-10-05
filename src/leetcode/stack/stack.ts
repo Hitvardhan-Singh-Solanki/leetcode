@@ -6,8 +6,11 @@ export class Stack<T> {
     this._length++;
   }
   pop(): T | null {
-    if (this._stack.length > 0) this._length--;
-    return this._stack.pop() || null;
+    if (this._stack.length > 0) {
+      this._length--;
+      return this._stack.pop() || null;
+    }
+    return null;
   }
 
   peek(): T | null {

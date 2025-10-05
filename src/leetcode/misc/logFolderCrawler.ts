@@ -1,4 +1,4 @@
-import { Stack } from './stack';
+import { Stack } from '../stack/stack';
 
 export function minOperations(logs: string[]): number {
   const stack: string[] = [];

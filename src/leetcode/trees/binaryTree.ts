@@ -1,5 +1,5 @@
 import { log } from 'console';
-import { Queue } from './queue';
+import { Queue } from '../queue/queue';
 
 interface IBinaryTree {
   insert(val: number): void;
@@ -74,9 +74,17 @@ export class BinaryTree implements IBinaryTree {
       node.val = successor.val;
       // Delete the inorder successor
       if (successorParent !== node) {
-        successorParent.left = this._deleteNode(successorParent.left, successor.val, () => {});
+        successorParent.left = this._deleteNode(
+          successorParent.left,
+          successor.val,
+          () => {}
+        );
       } else {
-        successorParent.right = this._deleteNode(successorParent.right, successor.val, () => {});
+        successorParent.right = this._deleteNode(
+          successorParent.right,
+          successor.val,
+          () => {}
+        );
       }
       return node;
     }

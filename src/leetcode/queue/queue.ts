@@ -1,4 +1,4 @@
-import { ListNode } from './linkedList';
+import { ListNode } from '../linked-lists/linkedList';
 
 interface IQueue<T> {
   enqueue(val: T): void;
