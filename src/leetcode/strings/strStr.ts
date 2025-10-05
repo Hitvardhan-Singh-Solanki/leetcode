@@ -14,6 +14,7 @@ export function strStr(haystack: string, needle: string): number {
 }
 
 export function strStrKMP(haystack: string, needle: string): number {
+  if (needle.length === 0) return 0;
   const lps = [] as Array<number>;
   computeLPSArray(needle, needle.length, lps);
   return KMPSearch(needle, haystack, lps);
@@ -24,21 +25,20 @@ function KMPSearch(pattern: string, txt: string, lps: Array<number>): number {
   const N = txt.length;
   let i = 0;
   let j = 0;
-  const res = [];
-  while (N - i >= M - j) {
+
+  while (i < N) {
     if (pattern.charAt(j) === txt.charAt(i)) {
       j++;
       i++;
     }
     if (j === M) {
-      res.push(i - j);
-      j = lps[j - 1];
+      return i - j;
     } else if (i < N && pattern.charAt(j) !== txt.charAt(i)) {
       if (j !== 0) j = lps[j - 1];
       else i = i + 1;
     }
   }
-  return res.length === 0 ? -1 : res[0];
+  return -1;
 }
 
 function computeLPSArray(

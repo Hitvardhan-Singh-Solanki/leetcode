@@ -1,4 +1,4 @@
-function pacificAtlantic(heights: number[][]): number[][] {
+export function pacificAtlantic(heights: number[][]): number[][] {
   if (heights.length === 0 || heights[0].length === 0) return [];
   const m = heights.length;
   const n = heights[0].length;

@@ -12,16 +12,14 @@ Permutations: This is for problems where order matters. Think of arranging objec
 P(n,k)= 
 (n−k)!
 n!
-​
- 
+
 For example, if you have 5 people and want to choose 3 for the roles of president, vice-president, and secretary, the order matters.
 
 Combinations: This is for problems where order does not matter. Think of picking a team or selecting a group of objects. The formula for the number of combinations of n items taken k at a time is:
 C(n,k)= 
 k!(n−k)!
 n!
-​
- 
+
 For example, if you have 5 people and want to choose 3 to be on a committee, the order doesn't matter.
 
 Key Problem-Solving Technique: Backtracking 🌲
